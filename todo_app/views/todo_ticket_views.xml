@@ -2,10 +2,10 @@
 <odoo>
     <!-- views -->
     <record id="todo_ticket_view" model="ir.ui.view">
-        <field name="name">To Do Ticket</field>
+        <field name="name">To Do Ticket Tree</field>
         <field name="model">todo.ticket</field>
         <field name="arch" type="xml">
-            <tree string="Todo Tickets">
+            <tree>
                 <field name="name"/>
                 <field name="number"/>
                 <field name="tag"/>
@@ -16,10 +16,10 @@
     </record>
 
     <record id="view_todo_ticket_form" model="ir.ui.view">
-        <field name="name">todo.ticket.form</field>
+        <field name="name">To Do Ticket</field>
         <field name="model">todo.ticket</field>
         <field name="arch" type="xml">
-            <form string="Todo Ticket">
+            <form>
                 <sheet>
                     <group>
                         <field name="name"/>
@@ -32,4 +32,15 @@
             </form>
         </field>
     </record>
+
+    <record id="todo_ticket_action" model="ir.actions.act.window">
+        <field name="name">To Do Ticket</field>
+        <field name="res_model">todo.ticket</field>
+        <field name="view_mode">tree, form</field>
+    </record>
+
+    <menuitem id="menuitem_todo_app"
+              name="tickets"
+              parent="menu_root_tickets"
+              action="todo_ticket_action"/>
 </odoo>
