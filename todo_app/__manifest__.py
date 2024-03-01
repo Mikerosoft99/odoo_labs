@@ -9,8 +9,7 @@
     'depends': ['base'],
     'data': [
         'views/todo_ticket_views.xml',
-        'views/base_menus.xml',
-        'security/ir.model.access.csv'
+        'security/ir.model.access.csv',
     ],
     'application': True,
 }
