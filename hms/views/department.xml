@@ -1,0 +1,18 @@
+<odoo>
+    <record id="view_department_form" model="ir.ui.view">
+        <field name="name">hms.department.form</field>
+        <field name="model">hms.department</field>
+        <field name="arch" type="xml">
+            <form string="Department">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="capacity"/>
+                        <field name="is_opened"/>
+                        <field name="patients"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

@@ -22,6 +22,7 @@ class Patient(models.Model):
     address = fields.Text(string="Address")
     age = fields.Integer(string="Age", compute='_compute_age', store=True)
     full_name = fields.Char(string="Full Name", compute='_compute_full_name', store=True)
+    department_id = fields.Many2one('hms.department', string="Department")
 
     @api.depends('first_name', 'last_name')
     def _compute_full_name(self):
