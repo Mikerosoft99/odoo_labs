@@ -21,4 +21,10 @@
             </form>
         </field>
     </record>
+
+    <record id="action_patient_list" model="ir.actions.act_window">
+        <field name="name">Patients</field>
+        <field name="res_model">hms.patient</field>
+        <field name="view_mode">tree,form</field>
+    </record>
 </odoo>

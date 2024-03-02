@@ -14,4 +14,10 @@
             </form>
         </field>
     </record>
+
+    <record id="action_doctor_list" model="ir.actions.act_window">
+        <field name="name">Doctors</field>
+        <field name="res_model">hms.doctor</field>
+        <field name="view_mode">tree,form</field>
+    </record>
 </odoo>
