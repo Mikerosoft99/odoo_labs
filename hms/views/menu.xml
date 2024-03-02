@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_patient_root" name="Patients" sequence="10"/>
+
+    <menuitem id="menu_patient_list" parent="menu_patient_root" name="Patient List" action="action_patient_list"/>
+
+</odoo>
