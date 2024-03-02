@@ -8,8 +8,9 @@
     'author': 'Kerollos Samy Fawzy',
     'depends': ['base'],
     'data': [
-        'views/todo_ticket_views.xml',
         'security/ir.model.access.csv',
+        'views/base_menus.xml',
+        'views/todo_ticket_views.xml',
     ],
     'application': True,
 }

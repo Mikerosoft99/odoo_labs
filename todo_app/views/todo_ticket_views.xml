@@ -1,5 +1,4 @@
 <odoo>
-    <!-- views -->
     <record id="todo_ticket_view" model="ir.ui.view">
         <field name="name">To Do Ticket Tree</field>
         <field name="model">todo.ticket</field>
@@ -21,13 +20,15 @@
             <form>
                 <sheet>
                     <group>
-                        <field name="name"/>
-                        <field name="number"/>
-                    </group>
-                    <group>
-                        <field name="tag"/>
-                        <field name="state"/>
-                        <field name="description"/>
+                        <group>
+                            <field name="name"/>
+                            <field name="number"/>
+                        </group>
+                        <group>
+                            <field name="tag"/>
+                            <field name="state"/>
+                            <field name="description"/>
+                        </group>
                     </group>
                 </sheet>
             </form>
@@ -65,12 +66,10 @@
     </record>
 
     <record id="todo_ticket_action" model="ir.actions.act_window">
-        <field name="name">To Do Ticket</field>
+        <field name="name">Ticket</field>
         <field name="res_model">todo.ticket</field>
         <field name="view_mode">tree,form,kanban</field>
     </record>
 
-    <menuitem id="menu_todo" name="todo"/>
-
-    <menuitem id="menu_root_tickets" name="tickets" parent="menu_todo" action="todo_ticket_action"/>
+    <menuitem id="menu_item_tickets" name="Tickets" parent="menu_root_tickets" action="todo_ticket_action"/>
 </odoo>
