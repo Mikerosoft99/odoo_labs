@@ -6,12 +6,28 @@
             <form string="Doctor">
                 <sheet>
                     <group>
-                        <field name="first_name"/>
-                        <field name="last_name"/>
-                        <field name="image" widget="image" options="{'preview_image': true}"/>
+                        <group string="Name">
+                            <field name="first_name"/>
+                            <field name="last_name"/>
+                        </group>
+                        <group string="Image">
+                            <field name="image" widget="image" options="{'preview_image': true}"/>
+                        </group>
                     </group>
                 </sheet>
             </form>
+        </field>
+    </record>
+
+    <record id="view_doctor_tree" model="ir.ui.view">
+        <field name="name">hms.doctor.tree</field>
+        <field name="model">hms.doctor</field>
+        <field name="arch" type="xml">
+            <tree string="Doctors">
+                <field name="first_name"/>
+                <field name="last_name"/>
+                <field name="image" widget="image" options="{'preview_image': true}"/>
+            </tree>
         </field>
     </record>
 
@@ -19,5 +35,9 @@
         <field name="name">Doctors</field>
         <field name="res_model">hms.doctor</field>
         <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_doctor_tree"/>
     </record>
+
+    <menuitem id="menu_item_doctor" parent="menu_doctor" name="Doctors" action="action_doctor_list"/>
+
 </odoo>

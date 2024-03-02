@@ -6,19 +6,41 @@
             <form string="Patient">
                 <sheet>
                     <group>
-                        <field name="first_name"/>
-                        <field name="last_name"/>
-                        <field name="birth_date"/>
-                        <field name="history"/>
-                        <field name="cr_ratio"/>
-                        <field name="blood_type"/>
-                        <field name="pcr"/>
-                        <field name="image" widget="image" options="{'preview_image': true}"/>
-                        <field name="address"/>
-                        <field name="age"/>
+                        <group string="Personal Info">
+                            <field name="first_name"/>
+                            <field name="last_name"/>
+                            <field name="birth_date"/>
+                            <field name="image" widget="image" options="{'preview_image': true}"/>
+                            <field name="age"/>
+                            <field name="address"/>
+                        </group>
+                        <group string="Medical Info">
+                            <field name="history"/>
+                            <field name="cr_ratio"/>
+                            <field name="blood_type"/>
+                            <field name="pcr"/>
+                        </group>
                     </group>
                 </sheet>
             </form>
+        </field>
+    </record>
+
+    <record id="view_patient_tree" model="ir.ui.view">
+        <field name="name">hms.patient.tree</field>
+        <field name="model">hms.patient</field>
+        <field name="arch" type="xml">
+            <tree string="Patients">
+                <field name="first_name"/>
+                <field name="last_name"/>
+                <field name="birth_date"/>
+                <field name="history"/>
+                <field name="cr_ratio"/>
+                <field name="blood_type"/>
+                <field name="pcr"/>
+                <field name="address"/>
+                <field name="age"/>
+            </tree>
         </field>
     </record>
 
@@ -26,5 +48,8 @@
         <field name="name">Patients</field>
         <field name="res_model">hms.patient</field>
         <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_patient_tree"/>
     </record>
+
+    <menuitem id="menu_item_patient" parent="menu_patient" name="Patients" action="action_patient_list"/>
 </odoo>

@@ -6,11 +6,11 @@
     'description': """This module provides a comprehensive Hospital Management System (HMS) for managing various aspects of a hospital, including patients, doctors, appointments, and medical records. It includes features such as patient registration, appointment scheduling, medical history tracking, and billing.""",
     'depends': ['base'],
     'data': [
-        'views/menu.xml',
+        'security/ir.model.access.csv',
+        'views/menus.xml',
         'views/patient.xml',
         'views/department.xml',
         'views/doctor.xml',
-        'security/ir.model.access.csv',
     ],
     'application': True,
 }

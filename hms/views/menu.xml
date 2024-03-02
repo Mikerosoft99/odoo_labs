@@ -1,8 +1,0 @@
-<!-- menu.xml -->
-<odoo>
-    <menuitem id="menu_hms_root" name="Hospital Management" sequence="10"/>
-
-    <menuitem id="menu_patient" parent="menu_hms_root" name="Patients" action="action_patient_list"/>
-    <menuitem id="menu_doctor" parent="menu_hms_root" name="Doctors" action="action_doctor_list"/>
-    <menuitem id="menu_department" parent="menu_hms_root" name="Departments" action="action_department_list"/>
-</odoo>
