@@ -13,14 +13,13 @@
                             <field name="first_name"/>
                             <field name="last_name"/>
                             <field name="birth_date"/>
-                            <field name="image" widget="image" options="{'preview_image': true}"/>
+                            <field name="image" widget="image" options="{'preview_image': true}" width="100"
+                                   height="100"/>
                             <field name="age"/>
                             <field name="address"/>
                         </group>
                         <group string="Medical Info">
                             <field name="history"/>
-<!--                            <field name="history" invisible = "state = False "/>-->
-<!--                            <field name="history" invisible="age < 50"/>-->
                             <field name="cr_ratio"/>
                             <field name="blood_type"/>
                             <field name="pcr"/>

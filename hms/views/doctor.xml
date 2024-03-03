@@ -11,7 +11,8 @@
                             <field name="last_name"/>
                         </group>
                         <group string="Image">
-                            <field name="image" widget="image" options="{'preview_image': true}"/>
+                            <field name="image" widget="image" options="{'preview_image': true}" width="100"
+                                   height="100"/>
                         </group>
                     </group>
                     <group string="Patients">
@@ -29,7 +30,7 @@
             <tree string="Doctors">
                 <field name="first_name"/>
                 <field name="last_name"/>
-                <field name="image" widget="image" options="{'preview_image': true}"/>
+                <field name="image" widget="image" options="{'preview_image': true}" width="100" height="100"/>
                 <field name="patient_ids"/>
             </tree>
         </field>
