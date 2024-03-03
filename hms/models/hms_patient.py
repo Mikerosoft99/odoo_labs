@@ -32,23 +32,6 @@ class Patient(models.Model):
         ('fair', 'Fair'),
         ('serious', 'Serious'),
     ], default='undetermined')
-    log_ids = fields.One2many('hms.patient.log', 'patient_id', string='Log History')
-
-    # ➢ With each change of the state a new log record is being
-    # created with a description of (State changed to
-    # NEW_STATE)
-    def write(self, vals):
-        old_state = self.state
-        res = super(Patient, self).write(vals)
-        if 'state' in vals and vals['state'] != old_state:
-            state_field = self._fields['state']
-            new_state_label = dict(state_field.selection).get(vals['state'])
-            self.log_ids.create({
-                'patient_id': self.id,
-                'created_by': self.env.user.id,
-                'description': f"State changed to {new_state_label}"
-            })
-        return res
 
     # compute full_name
     @api.depends('first_name', 'last_name')
@@ -113,13 +96,3 @@ class Patient(models.Model):
     def _onchange_department_id(self):
         if self.department_id:
             self.doctor_ids = [(6, 0, self.department_id.patient_ids.mapped('doctor_ids').ids)]
-
-
-class PatientLog(models.Model):
-    _name = 'hms.patient.log'
-    _description = 'Patient Log'
-
-    patient_id = fields.Many2one('hms.patient', string='Patient', required=True)
-    created_by = fields.Many2one('res.users', default=lambda self: self.env.user, required=True)
-    date = fields.Date(default=fields.Date.today, required=True)
-    description = fields.Text()
