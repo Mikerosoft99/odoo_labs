@@ -9,7 +9,7 @@
                         <field name="name"/>
                         <field name="capacity"/>
                         <field name="is_opened"/>
-                        <field name="patients"/>
+                        <field name="patient_ids"/>
                     </group>
                 </sheet>
             </form>
@@ -24,7 +24,7 @@
                 <field name="name"/>
                 <field name="capacity"/>
                 <field name="is_opened"/>
-                <field name="patients"/>
+                <field name="patient_ids"/>
             </tree>
         </field>
     </record>

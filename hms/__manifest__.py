@@ -7,7 +7,7 @@
     'depends': ['base'],
     'data': [
         'security/ir.model.access.csv',
-        'views/menus.xml',
+        'views/base_menus.xml',
         'views/patient.xml',
         'views/department.xml',
         'views/doctor.xml',

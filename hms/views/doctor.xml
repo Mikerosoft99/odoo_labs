@@ -14,6 +14,9 @@
                             <field name="image" widget="image" options="{'preview_image': true}"/>
                         </group>
                     </group>
+                    <group string="Patients">
+                        <field name="patient_ids"/>
+                    </group>
                 </sheet>
             </form>
         </field>
@@ -27,6 +30,7 @@
                 <field name="first_name"/>
                 <field name="last_name"/>
                 <field name="image" widget="image" options="{'preview_image': true}"/>
+                <field name="patient_ids"/>
             </tree>
         </field>
     </record>

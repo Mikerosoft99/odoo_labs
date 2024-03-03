@@ -4,6 +4,9 @@
         <field name="model">hms.patient</field>
         <field name="arch" type="xml">
             <form string="Patient">
+                <header>
+                    <field name="state" widget="statusbar" options="{'clickable': True}"/>
+                </header>
                 <sheet>
                     <group>
                         <group string="Personal Info">
@@ -16,9 +19,14 @@
                         </group>
                         <group string="Medical Info">
                             <field name="history"/>
+<!--                            <field name="history" invisible = "state = False "/>-->
+<!--                            <field name="history" invisible="age < 50"/>-->
                             <field name="cr_ratio"/>
                             <field name="blood_type"/>
                             <field name="pcr"/>
+                            <field name="department_id"/>
+                            <field name="department_capacity"/>
+                            <field name="doctor_ids"/>
                         </group>
                     </group>
                 </sheet>
@@ -40,6 +48,14 @@
                 <field name="pcr"/>
                 <field name="address"/>
                 <field name="age"/>
+                <field name="department_id"/>
+                <field name="doctor_ids"/>
+                <field name="department_capacity"/>
+                <field name="state" widget="badge"
+                       decoration-primary="state == 'undetermined'"
+                       decoration-success="state == 'good'"
+                       decoration-warning="state == 'fair'"
+                       decoration-danger="state == 'serious'"/>
             </tree>
         </field>
     </record>
