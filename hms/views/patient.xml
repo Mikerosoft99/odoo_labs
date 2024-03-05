@@ -5,7 +5,7 @@
         <field name="arch" type="xml">
             <form string="Patient">
                 <header>
-                    <field name="state" widget="statusbar" options="{'clickable': True}"/>
+                    <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
                     <group>
@@ -17,6 +17,7 @@
                                    height="100"/>
                             <field name="age"/>
                             <field name="address"/>
+                            <field name="email"/>
                         </group>
                         <group string="Medical Info">
                             <field name="history"/>
@@ -41,6 +42,7 @@
                 <field name="first_name"/>
                 <field name="last_name"/>
                 <field name="birth_date"/>
+                <field name="email"/>
                 <field name="history"/>
                 <field name="cr_ratio"/>
                 <field name="blood_type"/>

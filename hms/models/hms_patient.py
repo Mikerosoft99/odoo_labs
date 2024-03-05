@@ -1,5 +1,6 @@
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
+import re
 
 
 class Patient(models.Model):
@@ -33,6 +34,51 @@ class Patient(models.Model):
         ('serious', 'Serious'),
     ], default='undetermined')
     log_ids = fields.One2many('hms.patient.log', 'patient_id', string='Log History')
+    email = fields.Char(string="Email", required=True, unique=True)
+
+    _constraints = [
+        ('unique_email', 'UNIQUE(email)', 'Email must be unique!'),
+    ]
+
+    @api.constrains('email')
+    def _check_email(self):
+        for record in self:
+            email_regex = r"^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})$"
+            if not re.match(email_regex, record.email):
+                raise ValidationError("Invalid email format!")
+
+    def button_good(self):
+        self.write({'state': 'good'})
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Patient Status Update',
+            'view_mode': 'form',
+            'res_model': 'hms.patient',
+            'res_id': self.id,
+            'context': {'default_state': 'good'},
+        }
+
+    def button_fair(self):
+        self.write({'state': 'fair'})
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Patient Status Update',
+            'view_mode': 'form',
+            'res_model': 'hms.patient',
+            'res_id': self.id,
+            'context': {'default_state': 'fair'},
+        }
+
+    def button_serious(self):
+        self.write({'state': 'serious'})
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Patient Status Update',
+            'view_mode': 'form',
+            'res_model': 'hms.patient',
+            'res_id': self.id,
+            'context': {'default_state': 'serious'},
+        }
 
     # ➢ With each change of the state a new log record is being
     # created with a description of (State changed to
@@ -65,8 +111,8 @@ class Patient(models.Model):
         for record in self:
             if record.birth_date:
                 today = fields.Date.today()
-                record.age = today.year - record.birth_date.year - (
-                            (today.month, today.day) < (record.birth_date.month, record.birth_date.day))
+                delta = today - record.birth_date
+                record.age = int(delta.days / 365)
             else:
                 record.age = 0
 
@@ -86,14 +132,6 @@ class Patient(models.Model):
             if record.pcr and not record.cr_ratio:
                 raise ValidationError("CR Ratio is mandatory when PCR is checked.")
 
-    # ➢ The history field should be hidden if the age is less than 50 (handle in views??)
-    @api.onchange('age')
-    def _onchange_age(self):
-        if self.age < 50:
-            self.history = False
-        else:
-            self.history = True
-
     # ➢ The PCR field should be automatically checked if the age is
     # lower than 30 and show a warning message that it has
     # been checked
@@ -112,7 +150,8 @@ class Patient(models.Model):
     @api.onchange('department_id')
     def _onchange_department_id(self):
         if self.department_id:
-            self.doctor_ids = [(6, 0, self.department_id.patient_ids.mapped('doctor_ids').ids)]
+            self.doctor_ids = [(6, 0, [])]
+            self.doctor_ids = [(4, doctor.id) for doctor in self.department_id.doctor_ids]
 
 
 class PatientLog(models.Model):
