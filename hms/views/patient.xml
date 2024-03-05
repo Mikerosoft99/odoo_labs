@@ -5,6 +5,10 @@
         <field name="arch" type="xml">
             <form string="Patient">
                 <header>
+                    <button name="action_undetermined" type="object" class="btn-secondary" string="Undetermined"/>
+                    <button name="action_good" type="object" class="btn-success" string="Good"/>
+                    <button name="action_fair" type="object" class="btn-warning" string="Fair"/>
+                    <button name="action_serious" type="object" class="btn-danger" string="Serious"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
@@ -27,6 +31,15 @@
                             <field name="department_id"/>
                             <field name="department_capacity"/>
                             <field name="doctor_ids"/>
+                        </group>
+                        <group string="History Logs">
+                            <field name="log_ids">
+                                <tree string="History">
+                                    <field name="created_by"/>
+                                    <field name="create_date"/>
+                                    <field name="description"/>
+                                </tree>
+                            </field>
                         </group>
                     </group>
                 </sheet>

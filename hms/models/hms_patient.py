@@ -47,38 +47,21 @@ class Patient(models.Model):
             if not re.match(email_regex, record.email):
                 raise ValidationError("Invalid email format!")
 
-    def button_good(self):
-        self.write({'state': 'good'})
-        return {
-            'type': 'ir.actions.act_window',
-            'name': 'Patient Status Update',
-            'view_mode': 'form',
-            'res_model': 'hms.patient',
-            'res_id': self.id,
-            'context': {'default_state': 'good'},
-        }
+    def action_undetermined(self):
+        for rec in self:
+            rec.state = 'undetermined'
 
-    def button_fair(self):
-        self.write({'state': 'fair'})
-        return {
-            'type': 'ir.actions.act_window',
-            'name': 'Patient Status Update',
-            'view_mode': 'form',
-            'res_model': 'hms.patient',
-            'res_id': self.id,
-            'context': {'default_state': 'fair'},
-        }
+    def action_good(self):
+        for rec in self:
+            rec.state = 'good'
 
-    def button_serious(self):
-        self.write({'state': 'serious'})
-        return {
-            'type': 'ir.actions.act_window',
-            'name': 'Patient Status Update',
-            'view_mode': 'form',
-            'res_model': 'hms.patient',
-            'res_id': self.id,
-            'context': {'default_state': 'serious'},
-        }
+    def action_fair(self):
+        for rec in self:
+            rec.state = 'fair'
+
+    def action_serious(self):
+        for rec in self:
+            rec.state = 'serious'
 
     # ➢ With each change of the state a new log record is being
     # created with a description of (State changed to
