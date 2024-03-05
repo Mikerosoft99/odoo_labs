@@ -11,6 +11,7 @@
         'views/patient.xml',
         'views/department.xml',
         'views/doctor.xml',
+        'wizard/add_log_wizard.xml',
     ],
     'application': True,
 }

@@ -5,6 +5,7 @@
         <field name="arch" type="xml">
             <form string="Patient">
                 <header>
+                    <button name="action_add_log" type="object" class="btn-primary mx-3" string="Add New Log"/>
                     <button name="action_undetermined" type="object" class="btn-secondary" string="Undetermined"/>
                     <button name="action_good" type="object" class="btn-success" string="Good"/>
                     <button name="action_fair" type="object" class="btn-warning" string="Fair"/>

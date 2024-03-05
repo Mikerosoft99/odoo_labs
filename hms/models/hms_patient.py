@@ -1,6 +1,17 @@
 from odoo import models, fields, api
-from odoo.exceptions import ValidationError
+from odoo.exceptions import ValidationError, UserError
 import re
+import logging
+
+
+class PatientLog(models.Model):
+    _name = 'hms.patient.log'
+    _description = 'Patient Log'
+
+    patient_id = fields.Many2one('hms.patient', string='Patient', required=True)
+    created_by = fields.Many2one('res.users', default=lambda self: self.env.user, required=True)
+    date = fields.Date(default=fields.Date.today, required=True)
+    description = fields.Text()
 
 
 class Patient(models.Model):
@@ -33,13 +44,14 @@ class Patient(models.Model):
         ('fair', 'Fair'),
         ('serious', 'Serious'),
     ], default='undetermined')
-    log_ids = fields.One2many('hms.patient.log', 'patient_id', string='Log History')
+    log_ids = fields.One2many('hms.patient.log', 'patient_id', string='Log History', readonly=True)
     email = fields.Char(string="Email", required=True, unique=True)
 
     _constraints = [
         ('unique_email', 'UNIQUE(email)', 'Email must be unique!'),
     ]
 
+    # Email Validation
     @api.constrains('email')
     def _check_email(self):
         for record in self:
@@ -136,12 +148,9 @@ class Patient(models.Model):
             self.doctor_ids = [(6, 0, [])]
             self.doctor_ids = [(4, doctor.id) for doctor in self.department_id.doctor_ids]
 
-
-class PatientLog(models.Model):
-    _name = 'hms.patient.log'
-    _description = 'Patient Log'
-
-    patient_id = fields.Many2one('hms.patient', string='Patient', required=True)
-    created_by = fields.Many2one('res.users', default=lambda self: self.env.user, required=True)
-    date = fields.Date(default=fields.Date.today, required=True)
-    description = fields.Text()
+    def action_add_log(self):
+        try:
+            return self.env['ir.actions.actions']._for_xml_id('hms.action_log_wizard')
+        except Exception as e:
+            logging.error("Error retrieving log wizard action: %s", str(e))
+            raise UserError("Failed to load the log wizard. Please contact your system administrator.")
