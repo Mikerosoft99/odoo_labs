@@ -7,6 +7,7 @@
     'depends': ['base',
                 'crm'],
     'data': [
+        'security/groups.xml',
         'security/ir.model.access.csv',
         'views/base_menus.xml',
         'views/patient.xml',
