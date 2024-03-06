@@ -15,6 +15,7 @@
         'views/doctor.xml',
         'views/res_partner.xml',
         'wizard/add_log_wizard.xml',
+        'reports/patient_print.xml',
     ],
     'application': True,
 }

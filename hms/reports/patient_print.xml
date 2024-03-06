@@ -1,0 +1,56 @@
+<odoo>
+
+    <record id="patient_print" model="ir.actions.report">
+        <field name="name">Patient Status Report</field>
+        <field name="model">hms.patient</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hms.report_patient_status_template</field>
+        <field name="report_file">hms.report_patient_status_template</field>
+        <field name="binding_model_id" ref="model_hms_patient"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_patient_status_template">
+        <t t-call="web.html_container">
+            <div class="page">
+                <div class="row">
+                    <div class="col-6">
+                        <h1>Patient Status Report</h1>
+                    </div>
+                </div>
+                <hr/>
+                <div class="row">
+                    <div class="col-6">
+                        <b>Name:</b>
+                        Kerollos Samy
+                        <br/>
+                        <b>Age:</b>
+                        24
+                        <br/>
+                        <b>Department:</b>
+                        Emergency
+                        <br/>
+                        <b>Doctors:</b>
+                        Dr. Mohammed Ahmed, Dr. Youssef Rauf
+                        <br/>
+                    </div>
+                    <div class="col-6">
+                        <b>Birth date:</b>
+                        14/08/1999
+                        <br/>
+                        <b>PCR:</b>
+                        3.5
+                        <br/>
+                        <b>Blood Type:</b>
+                        O
+                        <br/>
+                        <b>Email:</b>
+                        kerollossamy@gmail.com
+                        <br/>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>
