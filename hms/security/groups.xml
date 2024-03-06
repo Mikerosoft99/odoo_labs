@@ -7,8 +7,8 @@
         <field name="name">Manager</field>
     </record>
 
-    <record id="view_patient_form_access" model="ir.model.access">
-        <field name="name">Patient Form Access</field>
+    <record id="access_user_patients" model="ir.model.access">
+        <field name="name">User Access to Patients</field>
         <field name="model_id" ref="model_hms_patient"/>
         <field name="group_id" ref="group_user"/>
         <field name="perm_read" eval="True"/>
@@ -16,34 +16,51 @@
         <field name="perm_create" eval="True"/>
         <field name="perm_unlink" eval="False"/>
     </record>
-
-    <record id="view_doctor_form_access" model="ir.model.access">
-        <field name="name">Doctor Form Access</field>
-        <field name="model_id" ref="model_hms_doctor"/>
-        <field name="group_id" ref="group_user"/>
-        <field name="perm_read" eval="True"/>
-        <field name="perm_write" eval="True"/>
-        <field name="perm_create" eval="True"/>
-        <field name="perm_unlink" eval="False"/>
-    </record>
-
-    <record id="view_department_form_access" model="ir.model.access">
-        <field name="name">Department Form Access</field>
+    <record id="access_user_departments" model="ir.model.access">
+        <field name="name">User Access to Departments</field>
         <field name="model_id" ref="model_hms_department"/>
         <field name="group_id" ref="group_user"/>
         <field name="perm_read" eval="True"/>
-        <field name="perm_write" eval="True"/>
-        <field name="perm_create" eval="True"/>
-        <field name="perm_unlink" eval="False"/>
-    </record>
-
-    <record id="menu_item_doctor_access" model="ir.model.access">
-        <field name="name">Doctor Menu Item Access</field>
-        <field name="model_id" ref="ir_ui_menu.menu_item_doctor"/>
-        <field name="group_id" ref="group_user"/>
-        <field name="perm_read" eval="False"/>
         <field name="perm_write" eval="False"/>
         <field name="perm_create" eval="False"/>
         <field name="perm_unlink" eval="False"/>
     </record>
+    <record id="access_user_doctors" model="ir.model.access">
+        <field name="name">User Access to Doctors</field>
+        <field name="model_id" ref="model_hms_doctor"/>
+        <field name="group_id" ref="group_user"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <record id="access_manager_patients" model="ir.model.access">
+        <field name="name">Manager Access to Patients</field>
+        <field name="model_id" ref="model_hms_patient"/>
+        <field name="group_id" ref="group_manager"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <record id="access_manager_departments" model="ir.model.access">
+        <field name="name">Manager Access to Departments</field>
+        <field name="model_id" ref="model_hms_department"/>
+        <field name="group_id" ref="group_manager"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <record id="access_manager_doctors" model="ir.model.access">
+        <field name="name">Manager Access to Doctors</field>
+        <field name="model_id" ref="model_hms_doctor"/>
+        <field name="group_id" ref="group_manager"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
 </odoo>
