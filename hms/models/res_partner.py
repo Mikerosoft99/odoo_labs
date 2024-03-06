@@ -5,6 +5,7 @@ class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     related_patient_id = fields.Many2one('hms.patient', string='Related Patient', groups='base.group_user')
+    vat = fields.Char(string='Tax ID', required=True)
 
     @api.constrains('email')
     def _check_duplicate_email(self):
